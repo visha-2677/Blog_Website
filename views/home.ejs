@@ -1,0 +1,12 @@
+<%- include("partials/header") %>
+<h1>HELLO</h1>
+<%mypostArr.forEach(function(element){%>
+    <h1><%=element.title%></h1>
+    <%if(element.contant.length > 100){%>
+        <p><%=element.contant.substring(0,100) + "...";%> <a href="posts/<%=element.title%>">Read More</a> </p>
+    <%}%>
+    <%if(element.contant.length < 100){%>
+        <p> <%=element.contant %> </p>
+    <%}%>
+<%})%>
+<%- include("partials/footer") %>
