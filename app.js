@@ -102,7 +102,7 @@ app.get("/posts/:postName",function(req,res){
   //   }
   // })
   console.log(requestedpost);
-  post.findOne({title:requestedpost}).then(function(foundPost){
+  post.findOne({title:requestedpost}, null, { maxTimeMS: 20000 }).then(function(foundPost){
     res.render("post",{reqTitle:foundPost.title,
       reqBody:foundPost.contant,
     });
@@ -128,6 +128,12 @@ app.post("/compose",function(req,res){
   });
   res.redirect("/");
 });
+app.post("/formdata",function(req,res){
+  const searchTitle=req.body.searchname;
+  // console.log("Enter formdata");
+  // console.log(searchTitle);
+  res.redirect("/posts/"+searchTitle);
+})
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");
